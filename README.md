@@ -15,8 +15,9 @@ version is 4.3.17.
 
         zsh
 
-  2. Clone the repository:
+  2. Remove the Default Configuration and Clone the repository:
 
+        rm -Rf ~/.z*
         git clone --recursive https://github.com/mfresonke/max-prezto-config.git "${ZDOTDIR:-$HOME}/.zprezto"
 
   3. Create a new Zsh configuration by copying the Zsh configuration files
