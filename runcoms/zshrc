@@ -12,4 +12,11 @@ fi
 
 # Customize to your needs...
 
-export PATH=$GOPATH/bin/:$PATH 
+# Standard Stuff
+export PATH=$PATH:$HOME/bin
+
+# Go Stuff
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export GO15VENDOREXPERIMENT=1
+
