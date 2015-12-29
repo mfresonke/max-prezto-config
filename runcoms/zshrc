@@ -12,6 +12,11 @@ fi
 
 # Customize to your needs...
 
+export ANDROID_HOME=/Applications/Android/sdk/platform-tools
+if [ -d "$ANDROID_HOME" ] ; then
+        export PATH=$PATH:$ANDROID_HOME
+fi
+
 # Standard Stuff
 if [ -d "$HOME/bin" ] ; then
 	export PATH=$PATH:$HOME/bin
