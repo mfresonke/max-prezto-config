@@ -22,9 +22,18 @@ if [ -d "$HOME/bin" ] ; then
 	export PATH=$PATH:$HOME/bin
 fi
 
+# Python 3 Stuff
+# Virtualenv/VirtualenvWrapper
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+
 # Go Stuff
 if [ -d "$HOME/go" ] ; then
 	export GOPATH=$HOME/go
 	export PATH=$PATH:$GOPATH/bin
 	export GO15VENDOREXPERIMENT=1  
 fi
+
+# Super Secret Parameters
+alias max="echo 'A god. A true master. Check out his work at http://github.com/mfresonke'"
+
