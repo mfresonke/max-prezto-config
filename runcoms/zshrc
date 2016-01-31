@@ -36,4 +36,4 @@ fi
 
 # Super Secret Parameters
 alias max="echo 'A god. A true master. Check out his work at http://github.com/mfresonke'"
-
+alias lolz='fortune | tee >(say -v Hysterical) | cowsay -f bong'
