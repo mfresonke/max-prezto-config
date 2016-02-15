@@ -24,8 +24,10 @@ fi
 
 # Python 3 Stuff
 # Virtualenv/VirtualenvWrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+if [-d "/usr/local/bin/virtualenvwrapper.sh" ; then
+	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+	source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # Go Stuff
 if [ -d "$HOME/go" ] ; then
