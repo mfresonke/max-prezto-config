@@ -24,7 +24,7 @@ fi
 
 # Python 3 Stuff
 # Virtualenv/VirtualenvWrapper
-if [-d "/usr/local/bin/virtualenvwrapper.sh"] ; then
+if [ -d "/usr/local/bin/virtualenvwrapper.sh" ] ; then
 	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 	source /usr/local/bin/virtualenvwrapper.sh
 fi
@@ -33,7 +33,7 @@ fi
 if [ -d "$HOME/go" ] ; then
 	export GOPATH=$HOME/go
 	export PATH=$PATH:$GOPATH/bin
-	export GO15VENDOREXPERIMENT=1  
+	export GO15VENDOREXPERIMENT=1
 fi
 
 # Super Secret Parameters
