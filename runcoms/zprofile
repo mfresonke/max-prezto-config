@@ -23,7 +23,7 @@ if type 'vim' > /dev/null; then
 else
 	export EDITOR='nano'
 fi
-export VISUAL='nano'
+export VISUAL="$EDITOR"
 export PAGER='less'
 
 #
