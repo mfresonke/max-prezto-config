@@ -12,30 +12,44 @@ fi
 
 # Customize to your needs...
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
-if [ -d "$ANDROID_HOME" ] ; then
-        export PATH=$PATH:$ANDROID_HOME/platform-tools
-fi
-
-# Standard Stuff
+# ======== Standard Stuff ========
+# User Bins
 if [ -d "$HOME/bin" ] ; then
 	export PATH=$PATH:$HOME/bin
 fi
 
-# Python 3 Stuff
-# Virtualenv/VirtualenvWrapper
-if [ -d "/usr/local/bin/virtualenvwrapper.sh" ] ; then
-	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-	source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-# Go Stuff
+# Go
 if [ -d "$HOME/go" ] ; then
 	export GOPATH=$HOME/go
 	export PATH=$PATH:$GOPATH/bin
 	export GO15VENDOREXPERIMENT=1
 fi
 
+# Docker Configs
+alias dc-exec='docker-compose exec'
+alias dcomp='docker-compose'
+
+# ======== Mac Specific Configs ========
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+if [ -d "$ANDROID_HOME" ] ; then
+        export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
+# MySQL Utils
+mysql_utils_loc="/Applications/MySQLWorkbench.app/Contents/MacOS"
+if [ -d "$mysql_utils_loc" ] ; then
+	export PATH=$PATH:$mysql_utils_loc
+fi
+
+# ======== Computer/Job Specific Configs ========
+
+# Bahamas Ride Helper Vars
+mysql_configs_dir="$HOME/Knight/Bahamas_Ride/Backend/database/configs"
+if [ -d "$mysql_configs_dir" ] ; then
+        export BR_SQL_CFGS="$mysql_configs_dir"
+fi
+
 # Super Secret Parameters
 alias max="echo 'A god. A true master. Check out his work at http://github.com/mfresonke'"
-alias lolz='fortune | tee >(say -v Hysterical) | cowsay -f bong'
+alias lolz='fortune | tee >(say) | cowsay -f bong'
