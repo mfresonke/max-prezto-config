@@ -13,6 +13,10 @@ fi
 # Customize to your needs...
 
 # ======== Standard Stuff ========
+
+# Don't Add to History if Space Is Prepended to Command
+setopt histignorespace
+
 # User Bins
 if [ -d "$HOME/bin" ] ; then
 	export PATH=$PATH:$HOME/bin
