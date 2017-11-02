@@ -12,7 +12,16 @@ fi
 
 # Customize to your needs...
 
+
 # ======== Standard Stuff ========
+
+# Setup Keychain for ssh management
+if command -v keychain > /dev/null ; then
+	eval `keychain --eval --agents ssh --quiet`
+else
+	echo "keychain command not found."
+fi
+
 
 # Don't Add to History if Space Is Prepended to Command
 setopt histignorespace
@@ -30,8 +39,8 @@ if [ -d "$HOME/go" ] ; then
 fi
 
 # Docker Configs
-alias dc-exec='docker-compose exec'
-alias dcomp='docker-compose'
+alias dke='docker-compose exec'
+alias dkc='docker-compose'
 
 # ======== Mac Specific Configs ========
 
