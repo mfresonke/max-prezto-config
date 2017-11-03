@@ -44,28 +44,13 @@ if [ -d "$HOME/go" ] ; then
 fi
 
 # Docker Configs
-alias dke='docker-compose exec'
-alias dkc='docker-compose'
+alias de='docker-compose exec'
+alias dc='docker-compose'
 
-# ======== Mac Specific Configs ========
-
-export ANDROID_HOME=$HOME/Library/Android/sdk
-if [ -d "$ANDROID_HOME" ] ; then
-        export PATH=$PATH:$ANDROID_HOME/platform-tools
-fi
-
-# MySQL Utils
-mysql_utils_loc="/Applications/MySQLWorkbench.app/Contents/MacOS"
-if [ -d "$mysql_utils_loc" ] ; then
-	export PATH=$PATH:$mysql_utils_loc
-fi
-
-# ======== Computer/Job Specific Configs ========
-
-# Bahamas Ride Helper Vars
-mysql_configs_dir="$HOME/Knight/Bahamas_Ride/Backend/database/configs"
-if [ -d "$mysql_configs_dir" ] ; then
-        export BR_SQL_CFGS="$mysql_configs_dir"
+# If ANDROID_HOME exists, add the platform tools to the path
+if [ -z "$ANDROID_HOME" ] && [ -d "$ANDROID_HOME" ] ; then
+	export ANDROID_HOME
+	export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 
 # Super Secret Parameters
