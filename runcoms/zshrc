@@ -12,6 +12,11 @@ fi
 
 # Customize to your needs...
 
+# ======== Source Device-Specific Configs ========
+
+if [[ -s "$HOME/.zconfig-$(hostname)" ]]; then
+        source "$HOME/.zconfig-$(hostname)"
+fi
 
 # ======== Standard Stuff ========
 
