@@ -17,7 +17,7 @@ fi
 
 # Setup Keychain for ssh management
 if command -v keychain > /dev/null ; then
-	eval `keychain --eval --agents ssh --quiet`
+	eval `keychain --eval --agents ssh id_ed25519 --quiet`
 else
 	echo "keychain command not found."
 fi
