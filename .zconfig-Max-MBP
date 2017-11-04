@@ -1,0 +1,26 @@
+prompt "paradox"
+
+ANDROID_HOME=$HOME/Library/Android/sdk
+
+# Ruby Helper (rbenv)
+eval "$(rbenv init -)"
+
+# gcloud setup
+if [ -d "/usr/local/Cashroom/google-cloud-sdk" ] ; then
+	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+	source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+fi
+
+# MySQL Utils
+mysql_utils_loc="/Applications/MySQLWorkbench.app/Contents/MacOS"
+if [ -d "$mysql_utils_loc" ] ; then
+	export PATH=$PATH:$mysql_utils_loc
+fi
+
+# ======== Computer/Job Specific Configs ========
+
+# Bahamas Ride Helper Vars
+mysql_configs_dir="$HOME/Knight/Bahamas_Ride/Backend/database/configs"
+if [ -d "$mysql_configs_dir" ] ; then
+  export BR_SQL_CFGS="$mysql_configs_dir"
+fi
