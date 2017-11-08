@@ -1,6 +1,6 @@
 prompt "paradox"
 
-ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
 
 # Ruby Helper (rbenv)
 eval "$(rbenv init -)"
