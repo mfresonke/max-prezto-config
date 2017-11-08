@@ -20,13 +20,6 @@ fi
 
 # ======== Standard Stuff ========
 
-# Setup Keychain for ssh management
-if command -v keychain > /dev/null ; then
-	eval `keychain id_ed25519 --eval --quiet`
-else
-	echo "keychain command not found."
-fi
-
 # Don't Add to History if Space Is Prepended to Command
 setopt histignorespace
 
@@ -58,7 +51,7 @@ alias lolz='fortune | tee >(say) | cowsay -f bong'
 
 # Setup Keychain for ssh management
 if command -v keychain > /dev/null ; then
-	eval `keychain --eval --agents ssh id_ed25519 --quiet`
+	eval `keychain id_ed25519 --eval --quiet`
 else
 	echo "keychain command not found."
 fi
