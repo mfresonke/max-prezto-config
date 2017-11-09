@@ -1,0 +1,2 @@
+# Have .hidden directories also hide from ls
+alias ls='if [[ -f .hidden ]]; then while read l; do opts+=(--hide="$l"); done < .hidden; fi; ls --color=auto "${opts[@]}"'
