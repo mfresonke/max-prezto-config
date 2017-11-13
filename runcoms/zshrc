@@ -40,7 +40,7 @@ alias de='docker-compose exec'
 alias dc='docker-compose'
 
 # If ANDROID_HOME exists, add the platform tools to the path
-if [ -z "$ANDROID_HOME" ] && [ -d "$ANDROID_HOME" ] ; then
+if [ -d "$ANDROID_HOME" ] ; then
 	export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 
