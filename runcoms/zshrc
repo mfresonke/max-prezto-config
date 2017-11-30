@@ -49,8 +49,8 @@ alias max="echo 'A god. A true master. Check out his work at http://github.com/m
 alias lolz='fortune | tee >(say) | cowsay -f bong'
 
 # Setup Keychain for ssh management
-if command -v keychain > /dev/null ; then
-	eval `keychain id_ed25519 --eval --quiet`
-else
-	echo "keychain command not found."
-fi
+#if command -v keychain > /dev/null ; then
+#	eval `keychain id_ed25519 --eval --quiet`
+#else
+#	echo "keychain command not found."
+#fi
