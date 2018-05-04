@@ -24,3 +24,10 @@ mysql_configs_dir="$HOME/Knight/Bahamas_Ride/Backend/database/configs"
 if [ -d "$mysql_configs_dir" ] ; then
   export BR_SQL_CFGS="$mysql_configs_dir"
 fi
+alias cdbrs='cd ~/Knight/Bahamas_Ride/Backend/br-backend'
+alias cdbra='cd ~/Knight/Bahamas_Ride/Android'
+alias cdbrad='cd ~/Knight/Bahamas_Ride/Android/br-android-driver'
+alias cdbrar='cd ~/Knight/Bahamas_Ride/Android/br-android-rider'
+alias cdbri='cd ~/Knight/Bahamas_Ride/iOS'
+alias cdbrid='cd ~/Knight/Bahamas_Ride/iOS/br-ios-driver'
+alias cdbrir='cd ~/Knight/Bahamas_Ride/iOS/br-ios-rider'

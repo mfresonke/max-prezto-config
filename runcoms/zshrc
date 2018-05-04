@@ -12,6 +12,10 @@ fi
 
 # Customize to your needs...
 
+# ======== Remove Unnecessary Additions ========
+# Build in diff that's useless...
+unset -f diff
+
 # ======== Source Device-Specific Configs ========
 
 if [[ -s "$HOME/.zconfig-$(hostname)" ]]; then
@@ -54,3 +58,10 @@ if command -v keychain > /dev/null ; then
 else
 	echo "keychain command not found."
 fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
