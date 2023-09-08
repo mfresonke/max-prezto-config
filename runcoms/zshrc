@@ -14,17 +14,20 @@ fi
 
 # ======== Remove Unnecessary Additions ========
 
-# Build in diff that's useless...
-unset -f diff
+# Build in diff that's useless (ignoring if it's already unset)
+unset -f diff &> /dev/null || true
 
 # Don't Add to History if Space Is Prepended to Command
 setopt histignorespace
 
 # ======== Source Device-Specific Configs ========
 
-if [[ -s "$HOME/.zconfig-$(hostname)" ]]; then
-        source "$HOME/.zconfig-$(hostname)"
+LOCALCFG_FILE="$HOME/.zconfig-$(hostname).sh"
+if [[ -s "$LOCALCFG_FILE" ]]; then
+        source "$LOCALCFG_FILE"
 fi
+
+alias localcfg="vim \"$LOCALCFG_FILE\" && echo \"Reloading .zshrc\" && source ~/.zshrc"
 
 # ======== PATH Stuff ========
 
