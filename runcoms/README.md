@@ -68,7 +68,7 @@ displaying messages and for deletion of files.
 
 _The authors of these files should be contacted via the [issue tracker][5]._
 
-- [Sorin Ionescu](https://github.com/sorin-ionescu)
+-   [Sorin Ionescu](https://github.com/sorin-ionescu)
 
 [1]: http://zsh.sourceforge.net/Intro/intro_3.html#SEC3
 [2]: https://www.kornshell.com

@@ -7,7 +7,52 @@
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+
+# ======== Remove Unnecessary Additions ========
+
+# Build in diff that's useless...
+unset -f diff
+
+# Don't Add to History if Space Is Prepended to Command
+setopt histignorespace
+
+# ======== Source Device-Specific Configs ========
+
+if [[ -s "$HOME/.zconfig-$(hostname)" ]]; then
+        source "$HOME/.zconfig-$(hostname)"
+fi
+
+# ======== PATH Stuff ========
+
+# User Bins
+if [ -d "$HOME/bin" ] ; then
+	export PATH=$PATH:$HOME/bin
+fi
+
+# Go
+if [ -d "$HOME/go" ] ; then
+	export GOPATH=$HOME/go
+	export PATH=$PATH:$GOPATH/bin
+fi
+
+# If ANDROID_HOME exists, add the platform tools to the path
+if [ -d "$ANDROID_HOME" ] ; then
+	export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
+# Enable Postgres CLI
+if [ -d "/Applications/Postgres.app/Contents/Versions/latest/bin" ] ; then
+	export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
+fi
+
+# fix python (fucking python....)
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
+
+
+# Super Secret Parameters
+alias lolz='fortune | tee >(say) | cowsay -f bong'
