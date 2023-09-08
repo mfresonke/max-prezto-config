@@ -1,0 +1,64 @@
+#!/bin/zsh
+
+WIREPUSHER_ID=s9B4mpkAj
+WIREPUSHER_IMAGE_URL="https://thumbs.dreamstime.com/b/database-server-fire-white-background-vector-illustration-142634977.jpg"
+
+usage() {
+  echo "Usage: $0 'TITLE' 'MESSAGE' 'OPTIONAL_TYPE' 'OPTIONAL_PASSWORD'";
+  exit 0;
+}
+
+if [ "$#" -lt 2 ] || [ "$#" -gt 4 ] ; then
+  usage;
+fi
+
+if ! [ -x "$(command -v curl)" ]; then
+  echo 'Error: curl is not installed.' >&2
+  exit 1
+fi
+
+title="$1"
+message="$2"
+type="$3"
+
+url_params=()
+url_params+=(--data-urlencode "id=$WIREPUSHER_ID")
+url_params+=(--data-urlencode "title=$title")
+url_params+=(--data-urlencode "message=$message")
+url_params+=(--data-urlencode "image_url=$WIREPUSHER_IMAGE_URL")
+
+if [ -n "$3" ]; then
+  url_params+=(--data-urlencode "type=$type")
+fi
+
+if [ -n "$4" ]; then
+  if ! [ -x "$(command -v openssl)" ]; then
+    echo 'Error: openssl is not installed.' >&2
+    exit 1
+  fi
+
+  if ! [ -x "$(command -v sha1sum)" ] && ! [ -x "$(command -v shasum)" ]; then
+    echo 'Error: neither shasum or sha1sum are installed.' >&2
+    exit 1
+  fi
+
+  hashmaker=sha1sum
+  if ! [ -x "$(command -v sha1sum)" ]; then
+    hashmaker=shasum
+  fi
+
+  iv=`openssl rand -hex 16`
+  pass=`printf "$4" | $hashmaker | cut -c1-32`
+
+  title=`printf "$1" | openssl aes-128-cbc -base64 -K "$pass" -iv "$iv" | tr '+/=' '-._'`
+  message=`printf "$2" | openssl aes-128-cbc -base64 -K "$pass" -iv "$iv" | tr '+/=' '-._'`
+
+  if [ -n "$4" ]; then
+    url_params+=(--data-urlencode "iv=$iv")
+  fi
+fi
+
+curl "${url_params[@]}" --user-agent "WirePusher Bash" "https://wirepusher.com/send"
+
+#curl -d "id=$id&title=$title&message=$message&type=$type&iv=$iv" -A "WirePusher Bash" "http://wirepusher.com/send"
+echo ""
