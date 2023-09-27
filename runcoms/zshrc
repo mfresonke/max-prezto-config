@@ -20,6 +20,9 @@ unset -f diff &> /dev/null || true
 # Don't Add to History if Space Is Prepended to Command
 setopt histignorespace
 
+# Autocomplete on Hidden (dot prefixed) files
+setopt globdots
+
 # ======== Source Device-Specific Configs ========
 
 LOCALCFG_FILE="$HOME/.zconfig-$(hostname).sh"
