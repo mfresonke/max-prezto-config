@@ -25,7 +25,16 @@ setopt globdots
 
 # ======== Source Device-Specific Configs ========
 
-LOCALCFG_FILE="$HOME/.zconfig-$(hostname).sh"
+# Check if scutil command exists
+if command -v scutil &> /dev/null; then
+    # macOS: Use scutil to get LocalHostName
+    HOSTNAME=$(scutil --get LocalHostName)
+else
+    # Other OS: Use hostname command
+    HOSTNAME=$(hostname)
+fi
+
+export LOCALCFG_FILE="$HOME/.zconfig-$HOSTNAME.sh"
 if [[ -s "$LOCALCFG_FILE" ]]; then
         source "$LOCALCFG_FILE"
 fi
