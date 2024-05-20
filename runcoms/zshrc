@@ -41,7 +41,7 @@ if [[ -s "$LOCALCFG_FILE" ]]; then
 fi
 
 alias localcfg="vim \"$LOCALCFG_FILE\" && echo \"Reloading .zshrc\" && source ~/.zshrc"
-alias localcfgcode='code "$LOCALCFG_FILE"'
+alias localcfgc='code "$LOCALCFG_FILE"'
 
 # ======== PATH Stuff ========
 
