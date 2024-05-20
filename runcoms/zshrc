@@ -59,6 +59,9 @@ fi
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 # export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 
+if type direnv &> /dev/null; then
+	eval "$(direnv hook zsh)"
+fi
 
 # Super Secret Parameters
 alias lolz='fortune | tee >(say) | cowsay -f bong'
