@@ -34,12 +34,14 @@ else
     HOSTNAME=$(hostname)
 fi
 
-export LOCALCFG_FILE="$HOME/.zconfig-$HOSTNAME.sh"
+# Source Prezto.
+export LOCALCFG_FILE="${ZDOTDIR:-$HOME}/.zprezto/local_configs/$HOSTNAME.sh"
 if [[ -s "$LOCALCFG_FILE" ]]; then
-        source "$LOCALCFG_FILE"
+	source "$LOCALCFG_FILE"
 fi
 
 alias localcfg="vim \"$LOCALCFG_FILE\" && echo \"Reloading .zshrc\" && source ~/.zshrc"
+alias localcfgcode='code "$LOCALCFG_FILE"'
 
 # ======== PATH Stuff ========
 
