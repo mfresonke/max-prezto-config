@@ -73,3 +73,23 @@ fi
 alias lolz='fortune | tee >(say) | cowsay -f bong'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Adapted from nvm install instructions - runs automatically if nvm is installed
+# brew install nvm if you want it
+NVM_DIR="$HOME/.nvm"
+if [ -d "$NVM_DIR" ] ; then
+	export NVM_DIR
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# Pyenv Autoconfig
+# brew install pyenv if you want it
+if command -v pyenv &> /dev/null; then
+	eval "$(pyenv init -)"
+fi
+
+# brew install rbenv ruby-build
+if command -v rbenv &> /dev/null; then
+	eval "$(rbenv init - zsh)"
+fi
