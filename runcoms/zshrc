@@ -41,7 +41,10 @@ if [[ -s "$LOCALCFG_FILE" ]]; then
 fi
 
 alias localcfg="vim \"$LOCALCFG_FILE\" && echo \"Reloading .zshrc\" && source ~/.zshrc"
-alias localcfgc='code "$LOCALCFG_FILE"'
+alias localcfgcode='code "$LOCALCFG_FILE"'
+alias refresh='source ~/.zshrc'
+alias zshrc='vim ~/.zshrc'
+alias zshrcode='code ~/.zshrc'
 
 # ======== PATH Stuff ========
 
@@ -69,6 +72,12 @@ fi
 # fix python (fucking python....)
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 # export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
+
+OPENJDK_HOME=/opt/homebrew/opt/openjdk
+if [ -d "$OPENJDK_HOME" ] ; then
+	export PATH="$OPENJDK_HOME/bin:$PATH"
+	export JAVA_HOME="$OPENJDK_HOME"
+fi
 
 if type direnv &> /dev/null; then
 	eval "$(direnv hook zsh)"
