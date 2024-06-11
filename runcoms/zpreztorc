@@ -84,6 +84,10 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
 # zstyle ':prezto:module:git:status:ignore' submodules 'all'
 
+# Skip creating tons of git aliases
+zstyle ':prezto:module:git:alias' skip yes
+
+
 #
 # GNU Utility
 #
@@ -165,6 +169,12 @@ zstyle ':prezto:module:prompt' theme 'steeef'
 
 # Auto switch the Ruby version on directory change.
 # zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+
+#
+# Node
+#
+# Skip creating node aliases
+zstyle ':prezto:module:node:alias' skip yes
 
 #
 # Screen
