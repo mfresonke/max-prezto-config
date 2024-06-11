@@ -65,8 +65,12 @@ do_node_stuff() {
 alias gs='git status'
 
 gp() {
-	git pull
-	do_node_stuff
+	local git_out=$(git pull | tee /dev/tty)
+	if [[ $git_out == "Already up to date." ]]; then
+		#echo "already up to date - not npm installing"
+	else
+		do_node_stuff
+	fi
 }
 
 gc() {
