@@ -55,8 +55,8 @@ load-nvmrc
 
 do_node_stuff() {
 	if [ -e package.json ]; then
+		echo "nvm using and npm installing..."
 		load-nvmrc
-		echo "npm installing..."
 		npm i >/dev/null
 	fi
 }
