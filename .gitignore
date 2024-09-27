@@ -3,3 +3,4 @@
 modules/*/cache.zsh
 contrib
 .DS_Store
+local_configs/Max-Work-MBP.sh
