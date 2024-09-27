@@ -17,12 +17,13 @@ fi
 # Editors
 #
 
-if [[ -z "$EDITOR" ]]; then
-  export EDITOR='nano'
+# Conditionally Set Vim as Editor if it Exists
+if type 'vim' > /dev/null; then
+	export EDITOR='vim'
+else
+	export EDITOR='nano'
 fi
-if [[ -z "$VISUAL" ]]; then
-  export VISUAL='nano'
-fi
+export VISUAL="$EDITOR"
 if [[ -z "$PAGER" ]]; then
   export PAGER='less'
 fi

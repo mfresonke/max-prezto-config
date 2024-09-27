@@ -5,9 +5,118 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+if [[ "$SKIPZSHRC" == "true" ]]; then
+	echo "Skipping normal zsh/zprezto setup"
+	return
+fi
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+
+# ======== Remove Unnecessary Additions ========
+
+# Build in diff that's useless (ignoring if it's already unset)
+unset -f diff &>/dev/null || true
+
+# Don't Add to History if Space Is Prepended to Command
+setopt histignorespace
+
+# Autocomplete on Hidden (dot prefixed) files
+setopt globdots
+
+# ======== Source Device-Specific Configs ========
+
+# Check if scutil command exists
+if command -v scutil &>/dev/null; then
+	# macOS: Use scutil to get LocalHostName
+	LOCALCFG_HOSTNAME=$(scutil --get LocalHostName)
+else
+	# Other OS: Use hostname command
+	LOCALCFG_HOSTNAME=$(hostname)
+fi
+
+# Map some computers to different names
+case $LOCALCFG_HOSTNAME in
+Max-Fresonke-HGWTXYD2RD)
+	LOCALCFG_HOSTNAME="Max-Work-MBP"
+	;;
+esac
+
+# Source Localcfg
+export LOCALCFG_FILE="${ZDOTDIR:-$HOME}/.zprezto/local_configs/$LOCALCFG_HOSTNAME.sh"
+if [[ -s "$LOCALCFG_FILE" ]]; then
+	source "$LOCALCFG_FILE"
+fi
+unset LOCALCFG_HOSTNAME
+
+alias localcfg="vim \"$LOCALCFG_FILE\" && echo \"Reloading .zshrc\" && source ~/.zshrc"
+alias localcfgc='code "$LOCALCFG_FILE"'
+alias refresh='source ~/.zshrc'
+alias zshrc='vim ~/.zshrc'
+alias zshrcode='code ~/.zshrc'
+
+# ======== PATH Stuff ========
+
+# User Bins
+if [ -d "$HOME/bin" ]; then
+	export PATH=$PATH:$HOME/bin
+fi
+
+# Go
+if [ -d "$HOME/go" ]; then
+	export GOPATH=$HOME/go
+	export PATH=$PATH:$GOPATH/bin
+fi
+
+# If ANDROID_HOME exists, add the platform tools to the path
+if [ -d "$ANDROID_HOME" ]; then
+	export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
+# Enable Postgres CLI
+if [ -d "/Applications/Postgres.app/Contents/Versions/latest/bin" ]; then
+	export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
+fi
+
+# fix python (fucking python....)
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
+
+OPENJDK_HOME=/opt/homebrew/opt/openjdk
+if [ -d "$OPENJDK_HOME" ]; then
+	export PATH="$OPENJDK_HOME/bin:$PATH"
+	export JAVA_HOME="$OPENJDK_HOME"
+fi
+
+if type direnv &>/dev/null; then
+	eval "$(direnv hook zsh)"
+fi
+
+# Super Secret Parameters
+alias lolz='fortune | tee >(say) | cowsay -f bong'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Adapted from nvm install instructions - runs automatically if nvm is installed
+# brew install nvm if you want it
+NVM_DIR="$HOME/.nvm"
+if [ -d "$NVM_DIR" ]; then
+	export NVM_DIR
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+fi
+
+# Pyenv Autoconfig
+# brew install pyenv if you want it
+if command -v pyenv &>/dev/null; then
+	eval "$(pyenv init -)"
+fi
+
+# brew install rbenv ruby-build
+if command -v rbenv &>/dev/null; then
+	eval "$(rbenv init - zsh)"
+fi
