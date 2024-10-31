@@ -120,3 +120,8 @@ fi
 if command -v rbenv &>/dev/null; then
 	eval "$(rbenv init - zsh)"
 fi
+
+# c shortcut
+if command -v code &>/dev/null; then
+        alias c='code .'
+fi
