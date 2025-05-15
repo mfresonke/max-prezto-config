@@ -53,11 +53,11 @@ if [[ -s "$LOCALCFG_FILE" ]]; then
 fi
 unset LOCALCFG_HOSTNAME
 
-alias localcfg="vim \"$LOCALCFG_FILE\" && echo \"Reloading .zshrc\" && source ~/.zshrc"
-alias localcfgc='code "$LOCALCFG_FILE"'
+alias lcfg="vim \"$LOCALCFG_FILE\" && echo \"Reloading .zshrc\" && source ~/.zshrc"
+alias lcfgc='code "$LOCALCFG_FILE"'
+alias zcfg='vim ~/.zshrc'
+alias zcfgc='code ~/.zshrc'
 alias refresh='source ~/.zshrc'
-alias zshrc='vim ~/.zshrc'
-alias zshrcode='code ~/.zshrc'
 
 # ======== PATH Stuff ========
 
